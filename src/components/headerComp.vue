@@ -1,18 +1,22 @@
 <template>  
-  <div class="container-fluid d-flex align-items-center border">
+  <!-- <div class="container-fluid d-flex align-items-center border"> -->
+    <div class="container-fluid d-flex align-items-center border bg-primary text-white">
+
+
       <div id="logo">
-          <a v-on:click="Home"><img src="../assets/logo-p.png" alt="" width="250"></a>
+          <a v-on:click="Home"><img src="../assets/logo-p.svg" alt="" width="250"></a>
       </div>
       <div class="d-flex ms-auto me-3">
           <nav>
               <ul id="list-contenedor" class="d-flex justify-content-around align-items-center">
-                  <router-link class="nav-link px-3" to="/HomeRoot">Inicio</router-link>
+                  <router-link class="nav-link px-3" to="/">Inicio</router-link>
                   <router-link class="nav-link px-3" to="/productoPage">Incripcion cursos</router-link>
                   <router-link class="nav-link px-3" to="/cursosPage">Cursos</router-link>
+                  <router-link class="nav-link px-3" to="/LoginPage">Login</router-link>
                   <carritoCompra></carritoCompra>
-                  <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Logout
-                  </button>
+                  <!-- <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</button> -->
+                  <button type="button" class="btn text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</button>
+
                   <p class="mb-0">{{$store.state.usuarioConectado}}</p>
               </ul>
           </nav>

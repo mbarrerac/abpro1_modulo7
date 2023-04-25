@@ -1,23 +1,32 @@
 <template>
     <headerComp></headerComp>
    <!-- Buscar productos    -->
-   <div class="seccion__buscar">
-         <input id="inputBuscador" v-model="inputBuscador" v-on:keyup="buscarProducto()" type="Buscar" class="form-control rounded" placeholder="Buscar" aria-label="Buscar" aria-describedby="search-addon"  />
-        <button type="button" class="btn-buscar" v-on:click="buscarProducto()">Buscar</button>
+   <div class="seccion__buscar" style="margin-top: 20px;">
+         <!-- <input id="inputBuscador" v-model="inputBuscador" v-on:keyup="buscarProducto()" type="Buscar" class="form-control rounded" placeholder="Buscar" aria-label="Buscar" aria-describedby="search-addon"  />
+        <button type="button" class="btn-buscar" v-on:click="buscarProducto()">Buscar</button> -->
+      
+        <input id="inputBuscador" v-model="inputBuscador" v-on:keyup="buscarProducto()" type="Buscar" class="form-control rounded" placeholder="Buscar" aria-label="Buscar" aria-describedby="search-addon" style="margin-right: 5px; margin-bottom: 10px;" />
+        <button type="button" class="btn-buscar" v-on:click="buscarProducto()" style="border-radius: 10px;">Buscar</button>
+
+
     </div>
 
-<div class="container-fluid row justify-content-center gap-3 ">
+<div class="container-fluid row justify-content-center gap-3">
  <template  v-for="fila in $store.state.producto" :key="fila.codigo">
-        <div class="card col-3 mx-2 mt-4" v-if="fila.estado" style="width: 18rem; margin: 3em;" >  
-                <img v-bind:src="fila.img" class="card-img-top" alt="...">
+        <!-- <div class="card col-3 mx-2 mt-4" v-if="fila.estado" style="width: 18rem; margin: 3em;" >   -->
+                <!-- <img v-bind:src="fila.img" class="card-img-top" alt="..."> -->
+            <div class="card col-3 mx-2 mt-4 card-custom" v-if="fila.estado" style="width: 18rem; margin: 3em;" >
+
+                <img v-bind:src="fila.img" class="card-img-top card-img-custom" alt="...">
+
                 <div class="card-body">
                     <h5 class="card-title">{{fila.nombre}}</h5>
-                    <p class="card-text">Material:{{fila.descripcion}}</p>
+                    <!-- <p class="card-text">Material:{{fila.descripcion}}</p> -->
                     <p class="mb-3"> Precio:  {{new Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency' }).format(fila.precio)}}</p>
 
                     <p class="card-text">Cupos: {{fila.cupos}}</p>
                     <p class="card-text">Inscritos: {{fila.inscritos}}</p>
-                    <button class = "btn btn-outline-success" data-bs-toggle="modal" :data-bs-target="'#myModal' + fila.codigo" >Ver descripción </button> 
+                    <button class = "btn btn-outline-success" data-bs-toggle="modal" :data-bs-target="'#myModal' + fila.codigo" >Ver descripción curso</button> 
                     <a href="#" v-on:click="registrarProducto(fila)" class="btn-agregar">Agregar</a>
                 </div>
 
@@ -109,16 +118,15 @@ export default {
                 
             },
             async extraerData() {
-
+                this.$store.state.producto=[]
+                this.$store.state.productoTotal=[]
                   const querySnapshot = await getDocs(collection(db, "cursos2023"));
-       
-                 console.log(querySnapshot)
-                 querySnapshot.forEach((doc) => {
-                //  console.log(doc.id, " => ", doc.data().nombre," => ",doc.data().descripcion," => ",doc.data().Inscritos);
-                 this.$store.state.producto.push(doc.data());
-       
-                 });
-                 
+                  console.log(querySnapshot)
+                  querySnapshot.forEach((doc) => {
+                      const curso = Object.assign({}, doc.data(), { id: doc.id });
+                      this.$store.state.producto.push(curso); 
+                      this.$store.state.productoTotal = this.$store.state.producto
+                  }); 
             },
  
      
@@ -150,7 +158,7 @@ font-family: 'Montserrat', sans-serif;
 }
 
 .btn-agregar{
-background-color: #EA4C89;
+background-color: blue;
 border-radius: 8px;
 border-style: none;
 box-sizing: border-box;
@@ -179,7 +187,7 @@ font-family: 'Montserrat', sans-serif;
 
 .btn-agregar:hover,
 .btn-agregar:focus {
-background-color: #F082AC;
+background-color:  #6572ca;;
 color: #424242;
 font-family: 'Montserrat', sans-serif;
 }
@@ -193,7 +201,7 @@ padding-right: 7em;
 .btn-buscar{
 width: 10em;
 border-radius: 2px;
-background-color: #F082AC;
+background-color: blue;
 color: #ffffff;
 text-align: center;
 /* padding: 1.1em; */
@@ -217,7 +225,7 @@ cursor: pointer;
 .btn-buscar:focus,
 .btn-procesar:hover,
 .btn-procesar:focus{
-background-color: #ef8db3;
+background-color: #6572ca;;
 color: #424242; 
 }
 
@@ -228,5 +236,23 @@ color: #424242;
 .carrito__compras{
 font-family: 'Montserrat', sans-serif;
 }
+
+.card-img-custom {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  margin-top: 10px;
+}
+
+.card-custom {
+  width: 18rem;
+  height: 100%;
+}
+
+
+
+
+
+
 
 </style>

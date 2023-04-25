@@ -15,47 +15,27 @@ export default createStore({
             //state = newProducts
             //payload = productos
             registrarProducto(state, payload){    
-             console.log(payload)
-            
-           
-
                 //retorna true o false si este objeto existe el arreglo
                 let existe = state.newProducts.some((element)=>{ 
                     return payload.id == element.id
                 });
                
-            if(!existe){
-                state.contador = state.contador+1
-                let product ={
-                    id:payload.id,
-                    name: payload.name,
-                    description: payload.description,
-                    price: payload.price,
-                    stock: payload.stock,
-                    image: payload.image,
-                    cantidad: 1,
-                    total: payload.price,
+                if(!existe){
+                  state.contador = state.contador+1
+                  let product ={
+                      id:payload.id,
+                      codigo: payload.codigo,
+                      nombre: payload.nombre,
+                      descripcion: payload.descripcion,
+                      precio: payload.precio,
+                      cupos: payload.cupos,
+                      imagen: payload.imagen,
+                      duracion:payload.duracion,
+                  }
+                  state.newProducts.push(product);
+                  console.log('aca')
+                  console.log(state.newProducts)
                 }
-                state.newProducts.push(product);
-              
-            }else{
-
-              state.newProducts = state.newProducts.map((element)=>{
-
-                    if(element.id === payload.id){
-
-                        element.cantidad = element.cantidad+1; 
-                        element.total = element.cantidad*element.price;
-                        return element;
-
-                    }else{
-                        
-                        return element;
-                    }
-
-                })
-        
-            }
             },
             eliminarProducto(state, payload){
                 if (window.confirm("¿Esta seguro que desea eliminar este producto?")){
@@ -76,17 +56,17 @@ export default createStore({
                 }    
             },
 
-            calcularProducto(state,payload){
+        //     calcularProducto(state,payload){
 
-            if (payload.cantidad > payload.stock){
-                alert("Cantidad es mayor al stock del producto, stock máximo "+payload.stock)
-                payload.cantidad = payload.stock
-            }else {
-              payload.total = payload.cantidad*payload.price;
+        //     if (payload.cantidad > payload.stock){
+        //         alert("Cantidad es mayor al stock del producto, stock máximo "+payload.stock)
+        //         payload.cantidad = payload.stock
+        //     }else {
+        //       payload.total = payload.cantidad*payload.price;
     
-            }
+        //     }
           
-          },
+        //   },
           inputHandler(state, cantidad){
             console.log(cantidad);
 

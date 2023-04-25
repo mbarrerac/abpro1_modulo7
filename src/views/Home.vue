@@ -119,7 +119,7 @@ export default {
 
 <style>
 .btn--ver{
-  background-color: #EA4C89;
+  background-color: blue;
   border-radius: 8px;
   border-style: none;
   box-sizing: border-box;

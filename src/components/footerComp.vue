@@ -12,7 +12,7 @@ export default {
 
 <style>
 footer {
-  background-color: #F082AC;
+  background-color:white;
   margin-top: 5em;
   padding: 50px;
   text-align: center;

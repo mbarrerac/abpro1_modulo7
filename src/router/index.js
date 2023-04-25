@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/Home.vue";
+import Home from "@/views/Home.vue";
 import LoginPage from '@/views/LoginPage.vue'
 import Productos from '@/views/productoPage.vue'
 import Cursos from '@/views/cursosPage.vue'
@@ -10,13 +10,13 @@ import Cursos from '@/views/cursosPage.vue'
 
 const routes = [
   {
-    path: "/HomeRoot",
+    path: "/",
     name: "HomeRoot",
     component: Home,
     // redirect: '/pinned-article'
   },
   {
-    path: "/",
+    path: "/LoginPage",
     name: "LoginPage",
     component:LoginPage
    

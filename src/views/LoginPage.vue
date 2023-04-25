@@ -1,22 +1,24 @@
 <template>
-<div>
-    <div class="img"><img alt="Vue logo" src="../assets/logo.png" width="100"/></div>
+  <div>
+    <div class="img"><img alt="Vue logo" src="../assets/logo-p.png" width="100" /></div>
     <h2>Iniciar sesión</h2>
-    <form @submit.prevent="login">
-    <div>
+    <form class="d-flex flex-column" @submit.prevent="login">
+      <div>
         <label for="email">Correo electrónico:</label>
-        <input type="email" id="email" v-model="email" placeholder="ejemplo@mail.cl" required>
-    </div>
-    <div>
+        <input type="email" id="email" v-model="email" placeholder="ejemplo@mail.cl" required />
+      </div>
+      <div>
         <label for="password">Contraseña:</label>
-        <input type="password" id="password" v-model="password" placeholder="tu contraseña" required>
-    </div>
-    </form>    
-    <div class="btn"><button type="submit" v-on:click="login()">Iniciar sesión</button></div>
+        <input type="password" id="password" v-model="password" placeholder="tu contraseña" required />
+      </div>
+      <button type="submit" v-on:click="login()" class="btn btn-primary rounded-pill">Iniciar sesión</button>
+
+    </form>
     <div v-if="error" class="error">{{ error }}</div>
-</div>
-<footerComp></footerComp>
+  </div>
+  <footerComp></footerComp>
 </template>
+
 
 <script>
 import footerComp from '../components/footerComp.vue'
@@ -60,7 +62,7 @@ methods: {
          if (this.error==='Correcto'){
         //     this.error=''
         this.$store.state.usuarioConectado=this.email
-        this.$router.push('/HomeRoot')
+        this.$router.push('/productoPage')
             
            
          }
@@ -109,7 +111,7 @@ width: 100%;
 }
 
 button {
-background-color: #EA4C89;
+background-color: blue;
 border-radius: 8px;
 border-style: none;
 box-sizing: border-box;
@@ -138,7 +140,7 @@ font-family: 'Montserrat', sans-serif;
 }
 
 button:hover {
-background-color: #F082AC;
+background-color: #6572ca;
 color: #424242;
 font-family: 'Montserrat', sans-serif;
 }
@@ -147,8 +149,17 @@ font-family: 'Montserrat', sans-serif;
 color: red;
 margin-top: 20px;
 }
-.img{
+/* .img{
     text-align: center;
     padding-top: 5em;
+} */
+
+.img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px; /* ajusta la altura según lo que necesites */
+  margin: 10em 0; /* ajusta el margen según lo que necesites */
 }
+
 </style>

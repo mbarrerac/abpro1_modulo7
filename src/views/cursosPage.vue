@@ -34,10 +34,8 @@
                 <td>{{ curso.img }}</td>
 
                 <td class="align-middle d-flex justify-content-center align-items-center">
-                   <button variant="primary"  data-bs-toggle="modal" :data-bs-target="'#myModal' + curso.codigo" style="width: 50%; height: auto;">&#9998; </button> 
-                   <b-button-close variant="danger" @click="eliminarCurso(curso)"  style="width: 50%;">
-                    &#128465;
-                   </b-button-close>
+                   <button class="styled-btn1" variant="primary" data-bs-toggle="modal" :data-bs-target="'#myModal' + curso.codigo">&#9998;</button>
+                   <button class="styled-btn2" variant="secondary" data-bs-toggle="modal" :data-bs-target="'#myModal' + curso.codigo"> &#128465;</button>
                 </td>
 
       
@@ -288,3 +286,35 @@ export default {
 }
   
 </script>
+<style>
+button {
+  background-color: blue; /* Fondo azul */
+  display: flex; /* Para centrar la imagen */
+  justify-content: center; /* Para centrar la imagen horizontalmente */
+  align-items: center; /* Para centrar la imagen verticalmente */
+}
+
+
+.styled-btn1 {
+  background-color: blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: auto;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+}
+.styled-btn2 {
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: auto;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+}
+</style>
